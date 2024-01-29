@@ -57,3 +57,8 @@ class SponsorCreate(generics.CreateAPIView):
     queryset = models.Sponsor.objects.all()
     serializer_class = serializer.SponsorSerializer
 
+
+class SponsorUpdate(generics.UpdateAPIView):
+
+    queryset = models.Sponsor.objects.all()
+    serializer_class = serializer.SponsorSerializer
