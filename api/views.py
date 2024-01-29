@@ -9,3 +9,13 @@ class ApplySponsor(ListAPIView):
     queryset = models.Sponsor.objects.all()
     serializer_class = serializer.SponsorSerializer
     pagination_class = None
+
+class ListSponsor(ListAPIView):
+
+    Sponsors : models.Donation
+
+    for from_sponsor in Sponsors:
+        # if Sponsors.from_sponsor == 
+        pass
+
+    # queryset = 

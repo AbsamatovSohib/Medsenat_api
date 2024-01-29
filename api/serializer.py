@@ -10,4 +10,8 @@ class SponsorSerializer(serializers.ModelSerializer):
 
 
 
+class SponsorListSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = models.Sponsor
+        exclude = ('person_type')
