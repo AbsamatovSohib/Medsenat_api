@@ -5,6 +5,9 @@ class Basemodel(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
+    class Meta:
+        abstrack = True
+
 
 class Sponsor(Basemodel):
 
@@ -69,3 +72,11 @@ class Student(Basemodel):
 
         verbose_name = "Student"
         verbose_name_plural = "Students"
+
+
+class Donation(Basemodel):
+
+    fromSponsor = models.ForeignKey(Sponsor, blank=True, null = True)
+    toStudent = models.ForeignKey(Student,blank = True, null = True)
+
+    money_rate = models.BigIntegerField()
