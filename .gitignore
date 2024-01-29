@@ -5,3 +5,4 @@ env/
 /.env
 .env/
 db.sqlite3
+/api/migrations

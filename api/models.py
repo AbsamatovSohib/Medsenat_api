@@ -6,7 +6,7 @@ class Basemodel(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
 
     class Meta:
-        abstrack = True
+        abstract  = True
 
 
 class Sponsor(Basemodel):
@@ -15,8 +15,8 @@ class Sponsor(Basemodel):
     phone = models.CharField(max_length = 9)
 
     choices = (
-        ("Yuridik","Yuridik"),
-        ("Jismoniy", "Jismoniy"),
+        ("Yuridik","Yk"),
+        ("Jismoniy", "Jy"),
         )
     
     person_type = models.CharField(max_length = 10, choices = choices, default = "Jismoniy")
@@ -26,10 +26,10 @@ class Sponsor(Basemodel):
 
     situation_choice = (("barchasi","barchasi"),("Yangi","Yangi"),("moderatsiyada","moderiyatsiyada"),("tasdiqlangan","tasdiqlangan"),("bekor qilingan","bekor qilingan"))
 
-    situation = models.CharField(max_length = 10, choices = situation_choice, default = "barchasi")
+    situation = models.CharField(max_length = 14, choices = situation_choice, default = "barchasi")
 
     def __str__(self):
-        return self.title[0:10]
+        return self.title   
     
     class Meta:
 
@@ -64,6 +64,7 @@ class Student(Basemodel):
 
     contract_price = models.PositiveBigIntegerField()
 
+    student_univercity = models.ForeignKey(University, on_delete = models.CASCADE, null = True)
 
     def __str__(self) :
         return self.title
@@ -76,7 +77,10 @@ class Student(Basemodel):
 
 class Donation(Basemodel):
 
-    fromSponsor = models.ForeignKey(Sponsor, blank=True, null = True)
-    toStudent = models.ForeignKey(Student,blank = True, null = True)
+    fromSponsor = models.ForeignKey(Sponsor,on_delete = models.CASCADE, blank=True, null = True)
+    toStudent = models.ForeignKey(Student, on_delete = models.CASCADE, blank = True, null = True)
 
     money_rate = models.BigIntegerField()
+
+    def __str__(self) :
+        return f"{self.toStudent}"
